@@ -41,4 +41,16 @@ public class GildedRoseTest {
 
         assertEquals(1, items[0].quality);
     }
+
+    @Test
+    public void should_item_quality_is_3_when_updateQuality_given_item_name_is_Sulfuras_Hand_of_Ragnaros_and_quality_is_3_and_sellIn_is_20() {
+
+        Item item = new Item("Sulfuras, Hand of Ragnaros", 20, 3);
+        Item[] items = {item};
+        GildedRose gildedRose = new GildedRose(items);
+
+        Item[] result = gildedRose.updateQuality();
+
+        assertEquals(3, items[0].quality);
+    }
 }
