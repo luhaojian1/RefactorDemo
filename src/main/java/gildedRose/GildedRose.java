@@ -22,69 +22,33 @@ public class GildedRose {
     private void updateNormalItem(Item item) {
         boolean isNormalItem = !isNameEquals(item, AGED_BRIE) && !isNameEquals(item, SULFURAS_HAND_OF_RAGNAROS) && !isNameEquals(item, BACKSTAGE);
         if (isNormalItem) {
-            if (item.getQuality() > 0) {
-                item.setQuality(item.getQuality() - 1);
-            }
-            item.setSellIn(item.getSellIn() - 1);
-            if (item.getSellIn() < 0) {
-                if (item.getQuality() > 0) {
-                    item.setQuality(item.getQuality() - 1);
-                }
-            }
+            ItemUpdater updater = new NormalUpdater();
+            updater.update(item);
         }
     }
 
     private void updateAgedItem(Item item) {
         if (isNameEquals(item, AGED_BRIE)) {
-            if (item.getQuality() < 50) {
-                item.setQuality(item.getQuality() + 1);
-            }
-            item.setSellIn(item.getSellIn() - 1);
-            if (item.getSellIn() < 0) {
-                if (item.getQuality() < 50) {
-                    item.setQuality(item.getQuality() + 1);
-                }
-            }
-
+            ItemUpdater updater = new AgeUpdater();
+            updater.update(item);
         }
     }
 
     private void updateBackStageItem(Item item) {
         if (isNameEquals(item, BACKSTAGE)) {
-            if (item.getQuality() < 50) {
-                item.setQuality(item.getQuality() + 1);
-                QualityIncrementIfSellInMoreThan(item, 11);
-                QualityIncrementIfSellInMoreThan(item, 6);
-            }
-            item.setSellIn(item.getSellIn() - 1);
-            if (item.getSellIn() < 0) {
-                item.setQuality(0);
-            }
+            ItemUpdater updater = new BackStageUpdater();
+            updater.update(item);
 
         }
     }
 
     private void updateSulfurasItem(Item item) {
         if (isNameEquals(item, SULFURAS_HAND_OF_RAGNAROS)) {
-            if (item.getSellIn() < 0) {
-                if (item.getQuality() < 50) {
-                    item.setQuality(item.getQuality() + 1);
-                }
-            }
+            ItemUpdater updater = new SulfurasUpdater();
+            updater.update(item);
         }
     }
 
-    private void QualityIncrementIfSellInMoreThan(Item item, int sellIn) {
-        if (item.getSellIn() < sellIn) {
-            selfIncrementIfQualityLessThanFifty(item);
-        }
-    }
-
-    private void selfIncrementIfQualityLessThanFifty(Item item) {
-        if (item.getQuality() < 50) {
-            item.setQuality(item.getQuality() + 1);
-        }
-    }
 
     private boolean isNameEquals(Item item, String agedBrie) {
         return item.getName().equals(agedBrie);
