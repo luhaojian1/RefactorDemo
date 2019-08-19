@@ -13,7 +13,7 @@ public class GildedRoseTest {
         Item[] items = {item};
         GildedRose gildedRose = new GildedRose(items);
 
-        Item[] result = gildedRose.updateQuality();
+        gildedRose.updateQuality();
 
         assertEquals(2, items[0].quality);
     }
@@ -25,7 +25,7 @@ public class GildedRoseTest {
         Item[] items = {item};
         GildedRose gildedRose = new GildedRose(items);
 
-        Item[] result = gildedRose.updateQuality();
+        gildedRose.updateQuality();
 
         assertEquals(0, items[0].quality);
     }
@@ -37,7 +37,7 @@ public class GildedRoseTest {
         Item[] items = {item};
         GildedRose gildedRose = new GildedRose(items);
 
-        Item[] result = gildedRose.updateQuality();
+        gildedRose.updateQuality();
 
         assertEquals(1, items[0].quality);
     }
@@ -49,7 +49,7 @@ public class GildedRoseTest {
         Item[] items = {item};
         GildedRose gildedRose = new GildedRose(items);
 
-        Item[] result = gildedRose.updateQuality();
+        gildedRose.updateQuality();
 
         assertEquals(3, items[0].quality);
     }
@@ -61,7 +61,7 @@ public class GildedRoseTest {
         Item[] items = {item};
         GildedRose gildedRose = new GildedRose(items);
 
-        Item[] result = gildedRose.updateQuality();
+        gildedRose.updateQuality();
 
         assertEquals(2, items[0].quality);
     }
@@ -73,7 +73,7 @@ public class GildedRoseTest {
         Item[] items = {item};
         GildedRose gildedRose = new GildedRose(items);
 
-        Item[] result = gildedRose.updateQuality();
+        gildedRose.updateQuality();
 
         assertEquals(3, items[0].quality);
     }
@@ -85,7 +85,7 @@ public class GildedRoseTest {
         Item[] items = {item};
         GildedRose gildedRose = new GildedRose(items);
 
-        Item[] result = gildedRose.updateQuality();
+        gildedRose.updateQuality();
 
         assertEquals(1, items[0].quality);
     }
@@ -97,7 +97,7 @@ public class GildedRoseTest {
         Item[] items = {item};
         GildedRose gildedRose = new GildedRose(items);
 
-        Item[] result = gildedRose.updateQuality();
+        gildedRose.updateQuality();
 
         assertEquals(1, items[0].quality);
         assertEquals(11, items[0].sellIn);
@@ -110,7 +110,7 @@ public class GildedRoseTest {
         Item[] items = {item};
         GildedRose gildedRose = new GildedRose(items);
 
-        Item[] result = gildedRose.updateQuality();
+        gildedRose.updateQuality();
 
         assertEquals(0, items[0].quality);
         assertEquals(-2, items[0].sellIn);
@@ -123,7 +123,7 @@ public class GildedRoseTest {
         Item[] items = {item};
         GildedRose gildedRose = new GildedRose(items);
 
-        Item[] result = gildedRose.updateQuality();
+        gildedRose.updateQuality();
 
         assertEquals(0, items[0].quality);
         assertEquals(-2, items[0].sellIn);
@@ -136,8 +136,20 @@ public class GildedRoseTest {
         Item[] items = {item};
         GildedRose gildedRose = new GildedRose(items);
 
-        Item[] result = gildedRose.updateQuality();
+        gildedRose.updateQuality();
 
         assertEquals(0, items[0].quality);
+    }
+
+    @Test
+    public void should_item_quality_is_5_when_updateQuality_given_item_name_is_Aged_Brie_and_quality_is_3_and_sellIn_is_less_than_0() {
+
+        Item item = new Item("Aged Brie", -1, 3);
+        Item[] items = {item};
+        GildedRose gildedRose = new GildedRose(items);
+
+        gildedRose.updateQuality();
+
+        assertEquals(5, items[0].quality);
     }
 }
