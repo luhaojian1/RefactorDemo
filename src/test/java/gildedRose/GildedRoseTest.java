@@ -115,4 +115,17 @@ public class GildedRoseTest {
         assertEquals(0, items[0].quality);
         assertEquals(-2, items[0].sellIn);
     }
+
+    @Test
+    public void should_item_quality_is_0_and_sellIn_is__2_when_updateQuality_given_item_name_is_Backstage_passes_and_quality_is_0_and_sellIn_is_less_than_0() {
+
+        Item item = new Item("Backstage passes", -1, 0);
+        Item[] items = {item};
+        GildedRose gildedRose = new GildedRose(items);
+
+        Item[] result = gildedRose.updateQuality();
+
+        assertEquals(0, items[0].quality);
+        assertEquals(-2, items[0].sellIn);
+    }
 }
