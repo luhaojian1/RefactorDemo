@@ -30,4 +30,15 @@ public class GildedRoseTest {
         assertEquals(0, items[0].quality);
     }
 
+    @Test
+    public void should_item_quality_is_1_when_updateQuality_given_item_name_is_Aged_Brie_and_quality_is_0_and_sellIn_is_20() {
+
+        Item item = new Item("Aged Brie", 20, 0);
+        Item[] items = {item};
+        GildedRose gildedRose = new GildedRose(items);
+
+        Item[] result = gildedRose.updateQuality();
+
+        assertEquals(1, items[0].quality);
+    }
 }
