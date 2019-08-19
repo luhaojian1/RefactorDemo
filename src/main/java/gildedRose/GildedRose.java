@@ -1,7 +1,7 @@
 package gildedRose;
 
 public class GildedRose {
-    Item[] items;
+    private Item[] items;
     private static final String SULFURAS_HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros";
     private static final String AGED_BRIE = "Aged Brie";
     private static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
@@ -13,12 +13,13 @@ public class GildedRose {
     public void updateQuality() {
         for (Item item : items) {
 
-            if (!isNameEquals(item, AGED_BRIE)
-                    && !isNameEquals(item, BACKSTAGE)) {
+            if (!isNameEquals(item, AGED_BRIE) && !isNameEquals(item, BACKSTAGE)) {
                 SelfDecrementWhenQualityMoreThanZeroAndNotNamedSulfuras(item);
+
             } else {
-                if (item.quality < 50) {
-                    item.quality++;
+                if (item.getQuality() < 50) {
+                    System.out.println(222);
+                    item.setQuality(item.getQuality() + 1);
                     if (isNameEquals(item, BACKSTAGE)) {
                         QualityIncrementIfSellInMoreThan(item, 11);
                         QualityIncrementIfSellInMoreThan(item, 6);
@@ -28,47 +29,55 @@ public class GildedRose {
 
             SellInDecrementIfNameNotSulfuras(item);
 
-            if (item.sellIn < 0) {
+            if (item.getSellIn() < 0) {
                 if (!isNameEquals(item, AGED_BRIE)) {
                     if (!isNameEquals(item, BACKSTAGE)) {
                         SelfDecrementWhenQualityMoreThanZeroAndNotNamedSulfuras(item);
                     } else {
-                        item.quality = 0;
+                        item.setQuality(0);
                     }
                 } else {
-                    selfIncrementIfQualityLessThanFifty(item);
+
+                    if (item.getQuality() < 50) {
+                        item.setQuality(item.getQuality() + 1);
+
+                    }
                 }
             }
         }
     }
 
     private void QualityIncrementIfSellInMoreThan(Item item, int sellIn) {
-        if (item.sellIn < sellIn) {
+        if (item.getSellIn() < sellIn) {
             selfIncrementIfQualityLessThanFifty(item);
         }
     }
 
     private void SellInDecrementIfNameNotSulfuras(Item item) {
         if (!isNameEquals(item, SULFURAS_HAND_OF_RAGNAROS)) {
-            item.sellIn--;
+            item.setSellIn(item.getSellIn() - 1);
         }
     }
 
     private void selfIncrementIfQualityLessThanFifty(Item item) {
-        if (item.quality < 50) {
-            item.quality++;
+        if (item.getQuality() < 50) {
+            item.setQuality(item.getQuality() + 1);
         }
     }
 
     private void SelfDecrementWhenQualityMoreThanZeroAndNotNamedSulfuras(Item item) {
-        if (item.quality > 0) {
+        if (item.getQuality() > 0) {
             if (!isNameEquals(item, SULFURAS_HAND_OF_RAGNAROS)) {
-                item.quality--;
+                item.setQuality(item.getQuality() - 1);
             }
         }
     }
 
     private boolean isNameEquals(Item item, String agedBrie) {
-        return item.name.equals(agedBrie);
+        return item.getName().equals(agedBrie);
+    }
+
+    public Item[] getItems() {
+        return items;
     }
 }

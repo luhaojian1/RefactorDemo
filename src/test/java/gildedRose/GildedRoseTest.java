@@ -15,7 +15,7 @@ public class GildedRoseTest {
 
         gildedRose.updateQuality();
 
-        assertEquals(2, items[0].quality);
+        assertEquals(2, items[0].getQuality());
     }
 
     @Test
@@ -27,7 +27,7 @@ public class GildedRoseTest {
 
         gildedRose.updateQuality();
 
-        assertEquals(0, items[0].quality);
+        assertEquals(0, items[0].getQuality());
     }
 
     @Test
@@ -39,7 +39,7 @@ public class GildedRoseTest {
 
         gildedRose.updateQuality();
 
-        assertEquals(1, items[0].quality);
+        assertEquals(1, items[0].getQuality());
     }
 
     @Test
@@ -51,7 +51,7 @@ public class GildedRoseTest {
 
         gildedRose.updateQuality();
 
-        assertEquals(3, items[0].quality);
+        assertEquals(3, items[0].getQuality());
     }
 
     @Test
@@ -63,7 +63,7 @@ public class GildedRoseTest {
 
         gildedRose.updateQuality();
 
-        assertEquals(2, items[0].quality);
+        assertEquals(2, items[0].getQuality());
     }
 
     @Test
@@ -75,7 +75,7 @@ public class GildedRoseTest {
 
         gildedRose.updateQuality();
 
-        assertEquals(3, items[0].quality);
+        assertEquals(3, items[0].getQuality());
     }
 
     @Test
@@ -87,7 +87,7 @@ public class GildedRoseTest {
 
         gildedRose.updateQuality();
 
-        assertEquals(1, items[0].quality);
+        assertEquals(1, items[0].getQuality());
     }
 
     @Test
@@ -99,8 +99,8 @@ public class GildedRoseTest {
 
         gildedRose.updateQuality();
 
-        assertEquals(1, items[0].quality);
-        assertEquals(11, items[0].sellIn);
+        assertEquals(1, items[0].getQuality());
+        assertEquals(11, items[0].getSellIn());
     }
 
     @Test
@@ -112,8 +112,8 @@ public class GildedRoseTest {
 
         gildedRose.updateQuality();
 
-        assertEquals(0, items[0].quality);
-        assertEquals(-2, items[0].sellIn);
+        assertEquals(0, items[0].getQuality());
+        assertEquals(-2, items[0].getSellIn());
     }
 
     @Test
@@ -125,8 +125,8 @@ public class GildedRoseTest {
 
         gildedRose.updateQuality();
 
-        assertEquals(0, items[0].quality);
-        assertEquals(-2, items[0].sellIn);
+        assertEquals(0, items[0].getQuality());
+        assertEquals(-2, items[0].getSellIn());
     }
 
     @Test
@@ -138,7 +138,7 @@ public class GildedRoseTest {
 
         gildedRose.updateQuality();
 
-        assertEquals(0, items[0].quality);
+        assertEquals(0, items[0].getQuality());
     }
 
     @Test
@@ -150,7 +150,7 @@ public class GildedRoseTest {
 
         gildedRose.updateQuality();
 
-        assertEquals(5, items[0].quality);
+        assertEquals(5, items[0].getQuality());
     }
 
     @Test
@@ -162,6 +162,6 @@ public class GildedRoseTest {
 
         gildedRose.updateQuality();
 
-        assertEquals(50, items[0].quality);
+        assertEquals(50, items[0].getQuality());
     }
 }
