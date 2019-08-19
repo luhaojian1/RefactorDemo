@@ -13,57 +13,58 @@ public class GildedRose {
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
 
-
-            if (!items[i].name.equals(AGED_BRIE)
-                    && !items[i].name.equals(BACKSTAGE)) {
-
-                if (items[i].quality > 0) {
-
-                    if (!items[i].name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
-                        items[i].quality--;
-                    }
-                }
+            if (!isNameEquals(items[i], AGED_BRIE)
+                    && !isNameEquals(items[i], BACKSTAGE)) {
+                SelfDecrementWhenQualityMoreThanZeroAndNotNamedSulfuras(items[i]);
             } else {
                 if (items[i].quality < 50) {
                     items[i].quality++;
 
-                    if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+                    if (isNameEquals(items[i], BACKSTAGE)) {
                         if (items[i].sellIn < 11) {
-                            if (items[i].quality < 50) {
-                                items[i].quality++;
-                            }
+                            selfIncrementIfQualityLessThanFifty(items[i]);
                         }
 
                         if (items[i].sellIn < 6) {
-                            if (items[i].quality < 50) {
-                                items[i].quality++;
-                            }
+                            selfIncrementIfQualityLessThanFifty(items[i]);
                         }
                     }
                 }
             }
 
-            if (!items[i].name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
+            if (!isNameEquals(items[i], SULFURAS_HAND_OF_RAGNAROS)) {
                 items[i].sellIn--;
             }
 
             if (items[i].sellIn < 0) {
-                if (!items[i].name.equals("Aged Brie")) {
-                    if (!items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (items[i].quality > 0) {
-                            if (!items[i].name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
-                                items[i].quality--;
-                            }
-                        }
+                if (!isNameEquals(items[i], AGED_BRIE)) {
+                    if (!isNameEquals(items[i], BACKSTAGE)) {
+                        SelfDecrementWhenQualityMoreThanZeroAndNotNamedSulfuras(items[i]);
                     } else {
                         items[i].quality = 0;
                     }
                 } else {
-                    if (items[i].quality < 50) {
-                        items[i].quality++;
-                    }
+                    selfIncrementIfQualityLessThanFifty(items[i]);
                 }
             }
         }
+    }
+
+    private void selfIncrementIfQualityLessThanFifty(Item item) {
+        if (item.quality < 50) {
+            item.quality++;
+        }
+    }
+
+    private void SelfDecrementWhenQualityMoreThanZeroAndNotNamedSulfuras(Item item) {
+        if (item.quality > 0) {
+            if (!isNameEquals(item, SULFURAS_HAND_OF_RAGNAROS)) {
+                item.quality--;
+            }
+        }
+    }
+
+    private boolean isNameEquals(Item item, String agedBrie) {
+        return item.name.equals(agedBrie);
     }
 }
