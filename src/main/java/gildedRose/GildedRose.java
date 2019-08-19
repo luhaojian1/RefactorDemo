@@ -1,5 +1,7 @@
 package gildedRose;
 
+import java.util.Arrays;
+
 public class GildedRose {
     private Item[] items;
     private static final String SULFURAS_HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros";
@@ -11,8 +13,6 @@ public class GildedRose {
     }
 
     public void updateQuality() {
-        for (Item item : items) {
-            item.update();
-        }
+        Arrays.stream(items).forEachOrdered(Item::update);
     }
 }
