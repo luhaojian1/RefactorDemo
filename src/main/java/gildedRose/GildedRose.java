@@ -19,7 +19,9 @@ public class GildedRose {
                     }
                 }
             } else {
+                System.out.println(111);
                 if (items[i].quality < 50) {
+                    System.out.println(222);
                     items[i].quality = items[i].quality + 1;
 
                     if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
