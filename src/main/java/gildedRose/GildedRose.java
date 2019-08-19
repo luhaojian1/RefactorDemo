@@ -11,32 +11,32 @@ public class GildedRose {
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
+        for (Item item : items) {
 
-            if (!isNameEquals(items[i], AGED_BRIE)
-                    && !isNameEquals(items[i], BACKSTAGE)) {
-                SelfDecrementWhenQualityMoreThanZeroAndNotNamedSulfuras(items[i]);
+            if (!isNameEquals(item, AGED_BRIE)
+                    && !isNameEquals(item, BACKSTAGE)) {
+                SelfDecrementWhenQualityMoreThanZeroAndNotNamedSulfuras(item);
             } else {
-                if (items[i].quality < 50) {
-                    items[i].quality++;
-                    if (isNameEquals(items[i], BACKSTAGE)) {
-                        QualityIncrementIfSellInMoreThan(items[i], 11);
-                        QualityIncrementIfSellInMoreThan(items[i], 6);
+                if (item.quality < 50) {
+                    item.quality++;
+                    if (isNameEquals(item, BACKSTAGE)) {
+                        QualityIncrementIfSellInMoreThan(item, 11);
+                        QualityIncrementIfSellInMoreThan(item, 6);
                     }
                 }
             }
 
-            SellInDecrementIfNameNotSulfuras(items[i]);
+            SellInDecrementIfNameNotSulfuras(item);
 
-            if (items[i].sellIn < 0) {
-                if (!isNameEquals(items[i], AGED_BRIE)) {
-                    if (!isNameEquals(items[i], BACKSTAGE)) {
-                        SelfDecrementWhenQualityMoreThanZeroAndNotNamedSulfuras(items[i]);
+            if (item.sellIn < 0) {
+                if (!isNameEquals(item, AGED_BRIE)) {
+                    if (!isNameEquals(item, BACKSTAGE)) {
+                        SelfDecrementWhenQualityMoreThanZeroAndNotNamedSulfuras(item);
                     } else {
-                        items[i].quality = 0;
+                        item.quality = 0;
                     }
                 } else {
-                    selfIncrementIfQualityLessThanFifty(items[i]);
+                    selfIncrementIfQualityLessThanFifty(item);
                 }
             }
         }
