@@ -2,7 +2,8 @@ package gildedRose;
 
 public class GildedRose {
     Item[] items;
-    private String sulfuras = "Sulfuras, Hand of Ragnaros";
+    private static final String SULFURAS_HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros";
+    private static final String AGED_BRIE = "Aged Brie";
 
     public GildedRose(Item[] items) {
         this.items = items;
@@ -10,12 +11,13 @@ public class GildedRose {
 
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
-            if (!items[i].name.equals("Aged Brie")
+
+            if (!items[i].name.equals(AGED_BRIE)
                     && !items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
 
                 if (items[i].quality > 0) {
 
-                    if (!items[i].name.equals(sulfuras)) {
+                    if (!items[i].name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
                         items[i].quality--;
                     }
                 }
@@ -39,7 +41,7 @@ public class GildedRose {
                 }
             }
 
-            if (!items[i].name.equals(sulfuras)) {
+            if (!items[i].name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
                 items[i].sellIn--;
             }
 
@@ -47,7 +49,7 @@ public class GildedRose {
                 if (!items[i].name.equals("Aged Brie")) {
                     if (!items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                         if (items[i].quality > 0) {
-                            if (!items[i].name.equals(sulfuras)) {
+                            if (!items[i].name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
                                 items[i].quality--;
                             }
                         }
