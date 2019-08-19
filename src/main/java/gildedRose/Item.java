@@ -23,6 +23,10 @@ public class Item {
         this.itemUpdater = itemUpdater;
     }
 
+    public void update() {
+        itemUpdater.update(this);
+    }
+
     public String getName() {
         return name;
     }

@@ -12,46 +12,7 @@ public class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            updateNormalItem(item);
-            updateAgedItem(item);
-            updateBackStageItem(item);
-            updateSulfurasItem(item);
+            item.update();
         }
     }
-
-    private void updateNormalItem(Item item) {
-        boolean isNormalItem = !isNameEquals(item, AGED_BRIE) && !isNameEquals(item, SULFURAS_HAND_OF_RAGNAROS) && !isNameEquals(item, BACKSTAGE);
-        if (isNormalItem) {
-            ItemUpdater updater = new NormalUpdater();
-            updater.update(item);
-        }
-    }
-
-    private void updateAgedItem(Item item) {
-        if (isNameEquals(item, AGED_BRIE)) {
-            ItemUpdater updater = new AgeUpdater();
-            updater.update(item);
-        }
-    }
-
-    private void updateBackStageItem(Item item) {
-        if (isNameEquals(item, BACKSTAGE)) {
-            ItemUpdater updater = new BackStageUpdater();
-            updater.update(item);
-
-        }
-    }
-
-    private void updateSulfurasItem(Item item) {
-        if (isNameEquals(item, SULFURAS_HAND_OF_RAGNAROS)) {
-            ItemUpdater updater = new SulfurasUpdater();
-            updater.update(item);
-        }
-    }
-
-
-    private boolean isNameEquals(Item item, String agedBrie) {
-        return item.getName().equals(agedBrie);
-    }
-
 }
