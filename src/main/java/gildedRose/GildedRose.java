@@ -19,22 +19,14 @@ public class GildedRose {
             } else {
                 if (items[i].quality < 50) {
                     items[i].quality++;
-
                     if (isNameEquals(items[i], BACKSTAGE)) {
-                        if (items[i].sellIn < 11) {
-                            selfIncrementIfQualityLessThanFifty(items[i]);
-                        }
-
-                        if (items[i].sellIn < 6) {
-                            selfIncrementIfQualityLessThanFifty(items[i]);
-                        }
+                        QualityIncrementIfSellInMoreThan(items[i], 11);
+                        QualityIncrementIfSellInMoreThan(items[i], 6);
                     }
                 }
             }
 
-            if (!isNameEquals(items[i], SULFURAS_HAND_OF_RAGNAROS)) {
-                items[i].sellIn--;
-            }
+            SellInDecrementIfNameNotSulfuras(items[i]);
 
             if (items[i].sellIn < 0) {
                 if (!isNameEquals(items[i], AGED_BRIE)) {
@@ -47,6 +39,18 @@ public class GildedRose {
                     selfIncrementIfQualityLessThanFifty(items[i]);
                 }
             }
+        }
+    }
+
+    private void QualityIncrementIfSellInMoreThan(Item item, int sellIn) {
+        if (item.sellIn < sellIn) {
+            selfIncrementIfQualityLessThanFifty(item);
+        }
+    }
+
+    private void SellInDecrementIfNameNotSulfuras(Item item) {
+        if (!isNameEquals(item, SULFURAS_HAND_OF_RAGNAROS)) {
+            item.sellIn--;
         }
     }
 
