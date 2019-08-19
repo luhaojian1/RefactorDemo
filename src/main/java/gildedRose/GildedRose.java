@@ -12,36 +12,63 @@ public class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
+            updateNormalItem(item);
+            updateAgedItem(item);
+            updateBackStageItem(item);
+            updateSulfurasItem(item);
+        }
+    }
 
-            if (!isNameEquals(item, AGED_BRIE) && !isNameEquals(item, BACKSTAGE)) {
-                SelfDecrementWhenQualityMoreThanZeroAndNotNamedSulfuras(item);
+    private void updateNormalItem(Item item) {
+        boolean isNormalItem = !isNameEquals(item, AGED_BRIE) && !isNameEquals(item, SULFURAS_HAND_OF_RAGNAROS) && !isNameEquals(item, BACKSTAGE);
+        if (isNormalItem) {
+            if (item.getQuality() > 0) {
+                item.setQuality(item.getQuality() - 1);
+            }
+            item.setSellIn(item.getSellIn() - 1);
+            if (item.getSellIn() < 0) {
+                if (item.getQuality() > 0) {
+                    item.setQuality(item.getQuality() - 1);
+                }
+            }
+        }
+    }
 
-            } else {
+    private void updateAgedItem(Item item) {
+        if (isNameEquals(item, AGED_BRIE)) {
+            if (item.getQuality() < 50) {
+                item.setQuality(item.getQuality() + 1);
+            }
+            item.setSellIn(item.getSellIn() - 1);
+            if (item.getSellIn() < 0) {
                 if (item.getQuality() < 50) {
-                    System.out.println(222);
                     item.setQuality(item.getQuality() + 1);
-                    if (isNameEquals(item, BACKSTAGE)) {
-                        QualityIncrementIfSellInMoreThan(item, 11);
-                        QualityIncrementIfSellInMoreThan(item, 6);
-                    }
                 }
             }
 
-            SellInDecrementIfNameNotSulfuras(item);
+        }
+    }
 
+    private void updateBackStageItem(Item item) {
+        if (isNameEquals(item, BACKSTAGE)) {
+            if (item.getQuality() < 50) {
+                item.setQuality(item.getQuality() + 1);
+                QualityIncrementIfSellInMoreThan(item, 11);
+                QualityIncrementIfSellInMoreThan(item, 6);
+            }
+            item.setSellIn(item.getSellIn() - 1);
             if (item.getSellIn() < 0) {
-                if (!isNameEquals(item, AGED_BRIE)) {
-                    if (!isNameEquals(item, BACKSTAGE)) {
-                        SelfDecrementWhenQualityMoreThanZeroAndNotNamedSulfuras(item);
-                    } else {
-                        item.setQuality(0);
-                    }
-                } else {
+                item.setQuality(0);
+            }
 
-                    if (item.getQuality() < 50) {
-                        item.setQuality(item.getQuality() + 1);
+        }
+    }
 
-                    }
+    private void updateSulfurasItem(Item item) {
+        if (isNameEquals(item, SULFURAS_HAND_OF_RAGNAROS)) {
+            if (item.getSellIn() < 0) {
+                if (item.getQuality() < 50) {
+                    item.setQuality(item.getQuality() + 1);
                 }
             }
         }
@@ -53,23 +80,9 @@ public class GildedRose {
         }
     }
 
-    private void SellInDecrementIfNameNotSulfuras(Item item) {
-        if (!isNameEquals(item, SULFURAS_HAND_OF_RAGNAROS)) {
-            item.setSellIn(item.getSellIn() - 1);
-        }
-    }
-
     private void selfIncrementIfQualityLessThanFifty(Item item) {
         if (item.getQuality() < 50) {
             item.setQuality(item.getQuality() + 1);
-        }
-    }
-
-    private void SelfDecrementWhenQualityMoreThanZeroAndNotNamedSulfuras(Item item) {
-        if (item.getQuality() > 0) {
-            if (!isNameEquals(item, SULFURAS_HAND_OF_RAGNAROS)) {
-                item.setQuality(item.getQuality() - 1);
-            }
         }
     }
 
@@ -77,7 +90,4 @@ public class GildedRose {
         return item.getName().equals(agedBrie);
     }
 
-    public Item[] getItems() {
-        return items;
-    }
 }

@@ -8,10 +8,19 @@ public class Item {
 
     private int quality;
 
+    private ItemUpdater itemUpdater;
+
     public Item(String name, int sellIn, int quality) {
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
+    }
+
+    public Item(String name, int sellIn, int quality, ItemUpdater itemUpdater) {
+        this.name = name;
+        this.sellIn = sellIn;
+        this.quality = quality;
+        this.itemUpdater = itemUpdater;
     }
 
     public String getName() {
