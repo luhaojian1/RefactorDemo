@@ -43,6 +43,18 @@ public class GildedRoseTest {
     }
 
     @Test
+    public void should_item_quality_is_3_when_updateQuality_given_item_name_is_Sulfuras_Hand_of_Ragnaros_and_quality_is_3_and_sellIn_is_less_than_0() {
+
+        Item item = new Item("Sulfuras, Hand of Ragnaros", -1, 3, new SulfurasUpdater());
+        Item[] items = {item};
+        GildedRose gildedRose = new GildedRose(items);
+
+        gildedRose.updateQuality();
+
+        assertEquals(3, items[0].getQuality());
+    }
+
+    @Test
     public void should_item_quality_is_3_when_updateQuality_given_item_name_is_Sulfuras_Hand_of_Ragnaros_and_quality_is_3_and_sellIn_is_20() {
 
         Item item = new Item("Sulfuras, Hand of Ragnaros", 20, 3, new SulfurasUpdater());
